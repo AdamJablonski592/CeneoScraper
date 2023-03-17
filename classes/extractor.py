@@ -101,4 +101,11 @@ class Extractor():
         return list_of_cons
     
     #extractor methods for product parameters
-            
+    @staticmethod
+    def get_product_name(tag):
+        product_name = tag.find("h1", class_="product-top__product-info__name").text
+        return product_name
+    
+    @staticmethod
+    def get_average_score(tag):
+        average_score = tag.find("font").text

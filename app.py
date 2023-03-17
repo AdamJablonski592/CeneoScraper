@@ -28,7 +28,7 @@ def fetch_data():
         soup = new_product.get_product_website()
         amount = new_product.get_page_number(soup)
         opinions = new_product.get_opinions(amount)
-        return render_template('product_site.html', form_data = opinions)
+        return render_template('product_site.html', opinions = opinions)
 
 
 app.run(host="0.0.0.0", port=80, debug=True)

@@ -23,8 +23,7 @@ class Product():
     def get_opinions(self, num_of_pages):
         product_reviews = []
         for i in range(1, num_of_pages + 1):
-            res = requests.get(
-                f"https://www.ceneo.pl/{self.product_id}/opinie-{i}")
+            res = requests.get(f"https://www.ceneo.pl/{self.product_id}/opinie-{i}")
             res.raise_for_status()
             soup = bs4.BeautifulSoup(res.text, 'html.parser')
             my_reviews = soup.find_all("div", class_="js_product-review")
@@ -47,3 +46,43 @@ class Product():
                 
                 product_reviews.append(review_instance.return_data())
         return product_reviews
+    
+    #get product credentials
+    def get_product_pros(self, opinions):
+        pros = 0
+        for item in opinions:
+            for it in item['list_of_pros']:
+                pros += 1
+        return pros
+    
+    def get_product_cons(self, opinions):
+        cons = 0
+        for item in opinions:
+            for it in item['list_of_cons']:
+                cons += 1
+        return cons
+    
+    def get_product_score(self, soup):
+        tag = soup.find("div", class_="f1")
+        product_score = Extractor.get_product_name(tag)
+        return product_score
+    
+    def get_product_name(self, soup):
+        product_name = Extractor.get_product_name(soup)
+        return product_name
+    
+    def return_opinion(self):
+        soup = self.get_product_website()
+        amount = self.get_page_number(soup)
+        opinions = self.get_opinions(amount)
+        return opinions
+    
+    def return_credentials(self, opinions, soup):
+        credentials = {
+            'product_id': self.product_id,
+            'product_name': self.get_product_name(soup),
+            'average_score': self.get_product_score(soup),
+            'review_amount': len(opinions),
+            'num_of_pros': self.get_product_pros(opinions),
+            'num_of_cons': self.get_product_cons(opinions)
+        }
