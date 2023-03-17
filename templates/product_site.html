@@ -23,6 +23,23 @@
             </tr>
         </thead>
         <tbody>
+            {% for item in form_data %}
+            <tr>
+                <th scope="row">{{form_data.index(item) + 1}}</th>
+                <td>{{item['review_id']}}</td>
+                <td>{{item['author_name']}}</td>
+                <td>{{item['recommendation']}}</td>
+                <td>{{item['stars_given']}}</td>
+                <td>{{item['verification']}}</td>
+                <td>{{item['helpful']}}</td>
+                <td>{{item['unhelpful']}}</td>
+                <td>{{item['review_content']}}</td>
+                <td>{{item['review_date']}}</td>
+                <td>{{item['buy_date']}}</td>
+                <td>{{item['list_of_pros']}}</td>
+                <td>{{item['list_of_cons']}}</td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>

@@ -9,12 +9,12 @@ class Extractor():
     
     @staticmethod
     def get_review_author(review):
-        author_name = review.find("span", class_="user-post__author-name")
+        author_name = review.find("span", class_="user-post__author-name").text
         return author_name
     
     @staticmethod
     def get_review_recommendation(review):
-        recommendation = review.find("span", class_="user-post__author-recommendation")
+        recommendation = review.find("span", class_="user-post__author-recomendation")
         if recommendation is not None:
             return recommendation.text
         else:
@@ -22,14 +22,15 @@ class Extractor():
     
     @staticmethod
     def get_review_stars(review):
-        stars_given = review.find("span", class_="user-post__score-count").text
+        stars_given = review.find(
+            "span", class_="user-post__score-count").text
         return stars_given
     
     @staticmethod
     def get_review_verification(review):
-        verification = review.find("div", class_="review-pz")
-        if verification is not None:
-            return verification.text.strip('\n')
+        verified = review.find("div", class_="review-pz")
+        if verified is not None:
+            return "1"
         else:
             return ""
         
@@ -74,7 +75,7 @@ class Extractor():
                 if review_tag is not None:
                     review_items = item.findAll("div", class_="review-feature__item")
                     for r_item in review_items:
-                        list_of_pros.append(r_item)
+                        list_of_pros.append(r_item.text)
                 else:
                     pass
         else:
@@ -92,7 +93,7 @@ class Extractor():
                 if review_tag is not None:
                     review_items = item.findAll("div", class_="review-feature__item")
                     for r_item in review_items:
-                        list_of_cons.append(r_item)
+                        list_of_cons.append(r_item.text)
                 else:
                     pass
         else:
