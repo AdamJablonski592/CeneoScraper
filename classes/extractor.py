@@ -82,7 +82,7 @@ class Extractor():
         return list_of_pros
     
     @staticmethod
-    def get_review_pros(review):
+    def get_review_cons(review):
         list_of_cons = []
         review_feature = review.find("div", class_="review-feature")
         if review_feature is not None:
