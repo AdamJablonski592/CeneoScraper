@@ -1,7 +1,6 @@
 import bs4, requests, re, math
-import extractor as ex
-import review as rv
-import charts as ch
+from .extractor import Extractor as ex
+from .review import Review as rv
 
 class Product():
     URL = "https://www.ceneo.pl/"

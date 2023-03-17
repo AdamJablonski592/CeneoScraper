@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container bg-dark text-light my-5 ">
+        <h1 class="d-flex justify-content-center p-3">Enter product code</h1>
+        <div class="form-group p-3">
+            <form action="/product_site" method="POST">
+                <input type="number" class="form-control" name="id" placeholder="Enter product code">
+                <input type="submit" class="btn btn-light my-3 px-5 d-flex mx-auto" value="Submit">
+            </form>
+        </div>
+    </div>
+{% endblock %}
