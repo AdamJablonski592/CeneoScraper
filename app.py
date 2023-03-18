@@ -5,7 +5,7 @@ import csv
 import pandas as pd
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="C:\\Users\\AdamJ\\Desktop\\CeneoScraper\\charts_folder")
 
 id_array = []
 
@@ -90,5 +90,10 @@ def download_xlsx(id):
         df = pd.DataFrame.from_dict(opinions)
         df.to_excel(f'{generate_opinion_path(id)}/{id}.xlsx')
         return render_template('download.html')
+    
+@app.route('/charts/<string:id>', methods=['GET'])
+def display_charts(id):
+    if request.method == 'GET':
+        return render_template('charts.html', id=id)
     
 app.run(host="0.0.0.0", port=80, debug=True)

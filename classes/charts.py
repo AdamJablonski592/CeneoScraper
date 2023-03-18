@@ -56,8 +56,9 @@ class GenerateChart():
         })
         df.plot(x="Number of Stars", y=[
             'Amount of opinions'], kind="bar")
+        
         dirname = os.path.dirname(__file__)
-        new_dir = os.path.join(dirname, f"../product_data/{id}/charts")
+        new_dir = os.path.join(dirname, f"../charts_folder")
         plt.savefig(f'{new_dir}/bar-{id}.png')
 
     @staticmethod
@@ -72,5 +73,5 @@ class GenerateChart():
         df.groupby(['Opinie']).sum().plot(
             kind='pie', y='Ilość')
         dirname = os.path.dirname(__file__)
-        new_dir = os.path.join(dirname, f"../product_data/{id}/charts")
+        new_dir = os.path.join(dirname, f"../charts_folder")
         plt.savefig(f'{new_dir}/pie-{id}.png')

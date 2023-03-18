@@ -96,7 +96,6 @@ class Product():
             os.makedirs(new_dir)
             os.makedirs(os.path.join(new_dir, './opinions'))
             os.makedirs(os.path.join(new_dir, './product'))
-            os.makedirs(os.path.join(new_dir, './charts'))
             
     def generate_bar_chart(self):
         soup = self.get_product_website()
