@@ -15,6 +15,8 @@ def generate_product(id):
     soup = new_product.get_product_website()
     amount = new_product.get_page_number(soup)
     opinions = new_product.get_opinions(amount)
+    new_product.generate_bar_chart()
+    new_product.generate_pie_chart()
     product_data = new_product.return_credentials(opinions, soup)
     return opinions, product_data
 

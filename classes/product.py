@@ -1,6 +1,7 @@
 import bs4, requests, re, math
 from .extractor import Extractor
 from .review import Review
+from .charts import GenerateChart
 import json
 import os
 
@@ -87,9 +88,28 @@ class Product():
 
     def new_product_directory(self):
         dirname = os.path.dirname(__file__)
+        catalog_dir = os.path.join(dirname, "../product_data")
+        if not os.path.exists(catalog_dir):
+            os.makedirs(catalog_dir)
         new_dir = os.path.join(dirname, f"../product_data/{self.product_id}")
         if not os.path.exists(new_dir):
             os.makedirs(new_dir)
             os.makedirs(os.path.join(new_dir, './opinions'))
             os.makedirs(os.path.join(new_dir, './product'))
             os.makedirs(os.path.join(new_dir, './charts'))
+            
+    def generate_bar_chart(self):
+        soup = self.get_product_website()
+        amount = self.get_page_number(soup)
+        opinions = self.get_opinions(amount)
+        raw_data = GenerateChart.get_stars_data(opinions)
+        chart = GenerateChart.generate_bar_chart(raw_data, self.product_id)
+        return chart
+    
+    def generate_pie_chart(self):
+        soup = self.get_product_website()
+        amount = self.get_page_number(soup)
+        opinions = self.get_opinions(amount)
+        raw_data = GenerateChart.get_recommendations_data(opinions)
+        chart = GenerateChart.generate_pie_chart(raw_data, self.product_id)
+        return chart
