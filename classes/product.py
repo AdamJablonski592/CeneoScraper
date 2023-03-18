@@ -1,6 +1,7 @@
 import bs4, requests, re, math
 from .extractor import Extractor
 from .review import Review
+import json
 
 class Product():
     URL = "https://www.ceneo.pl/"

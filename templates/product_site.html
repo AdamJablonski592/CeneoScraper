@@ -14,10 +14,9 @@
             <span>Amount of Cons: <span>{{product_cred['num_of_cons']}}</span></span>
         </div>
         <div class="json">
-            <a href="download/{{product_cred['product_code']}}"
-                class="text-success p-2 mx-2 text-decoration-none">
-                <p style="font-size: 2em;">Download</p>
-            </a>
+            <a class="btn btn-light" href="/download_json/{{product_cred['product_id']}}" role="button">Download JSON</a>
+            <a class="btn btn-light" href="/download_csv/{{product_cred['product_id']}}" role="button">Download CSV</a>
+            <a class="btn btn-light" href="/download_xlsx/{{product_cred['product_id']}}" role="button">Download XLSX</a>
         </div>
     </div>
 </div>
