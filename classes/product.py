@@ -2,6 +2,7 @@ import bs4, requests, re, math
 from .extractor import Extractor
 from .review import Review
 import json
+import os
 
 class Product():
     URL = "https://www.ceneo.pl/"
@@ -83,3 +84,12 @@ class Product():
             'num_of_cons': self.get_product_cons(opinions)
         }
         return credentials
+
+    def new_product_directory(self):
+        dirname = os.path.dirname(__file__)
+        new_dir = os.path.join(dirname, f"../product_data/{self.product_id}")
+        if not os.path.exists(new_dir):
+            os.makedirs(new_dir)
+            os.makedirs(os.path.join(new_dir, './opinions'))
+            os.makedirs(os.path.join(new_dir, './product'))
+            os.makedirs(os.path.join(new_dir, './charts'))
