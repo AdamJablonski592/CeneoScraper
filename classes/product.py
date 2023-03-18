@@ -63,19 +63,14 @@ class Product():
         return cons
     
     def get_product_score(self, soup):
-        tag = soup.find("div", class_="f1")
-        product_score = Extractor.get_product_name(tag)
+        tag = soup.find("div", class_="fl")
+        product_score = Extractor.get_product_score(tag)
         return product_score
     
     def get_product_name(self, soup):
         product_name = Extractor.get_product_name(soup)
         return product_name
     
-    def return_opinion(self):
-        soup = self.get_product_website()
-        amount = self.get_page_number(soup)
-        opinions = self.get_opinions(amount)
-        return opinions
     
     def return_credentials(self, opinions, soup):
         credentials = {
@@ -86,3 +81,4 @@ class Product():
             'num_of_pros': self.get_product_pros(opinions),
             'num_of_cons': self.get_product_cons(opinions)
         }
+        return credentials

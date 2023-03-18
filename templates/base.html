@@ -26,16 +26,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
+                    <a class="nav-link" href="{{ url_for('index') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/author">About</a>
+                    <a class="nav-link" href="{{ url_for('author') }}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/extraction">Extract</a>
+                    <a class="nav-link" href="{{ url_for('extraction') }}">Extract</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/products">Products</a>
+                    <a class="nav-link" href="{{ url_for('products') }}">Products</a>
                 </li>
             </ul>
         </div>

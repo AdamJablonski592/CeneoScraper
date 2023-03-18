@@ -107,5 +107,6 @@ class Extractor():
         return product_name
     
     @staticmethod
-    def get_average_score(tag):
+    def get_product_score(tag):
         average_score = tag.find("font").text
+        return average_score

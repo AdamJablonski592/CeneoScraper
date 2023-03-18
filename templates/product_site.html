@@ -1,13 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container">
-    
+    <div class="row bg-dark text-light m-5 p-3 d-flex flex-column">
+        <div class="product_name">
+            <p style="font-size: 2em;">{{product_cred['product_name']}}</p>
+        </div>
+        <div class="opinion_stats">
+            <span>Average Score: <span>{{product_cred['average_score']}}</span></span>
+            <span>Number of Opinions: <span>{{product_cred['review_amount']}}</span></span>
+        </div>
+        <div class="rating">
+            <span>Amount of Pros: <span>{{product_cred['num_of_pros']}}</span></span>
+            <span>Amount of Cons: <span>{{product_cred['num_of_cons']}}</span></span>
+        </div>
+        <div class="json">
+            <a href="download/{{product_cred['product_code']}}"
+                class="text-success p-2 mx-2 text-decoration-none">
+                <p style="font-size: 2em;">Download</p>
+            </a>
+        </div>
+    </div>
 </div>
 <div class="table-container d-flex justify-content-center">
     <table class="table text-light bg-dark w-75 m-5">
         <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">Review ID</th>
                 <th scope="col">Author Name</th>
                 <th scope="col">Recommendation</th>
@@ -23,21 +40,20 @@
             </tr>
         </thead>
         <tbody>
-            {% for item in form_data %}
+            {% for opinion in opinions %}
             <tr>
-                <th scope="row">{{form_data.index(item) + 1}}</th>
-                <td>{{item['review_id']}}</td>
-                <td>{{item['author_name']}}</td>
-                <td>{{item['recommendation']}}</td>
-                <td>{{item['stars_given']}}</td>
-                <td>{{item['verification']}}</td>
-                <td>{{item['helpful']}}</td>
-                <td>{{item['unhelpful']}}</td>
-                <td>{{item['review_content']}}</td>
-                <td>{{item['review_date']}}</td>
-                <td>{{item['buy_date']}}</td>
-                <td>{{item['list_of_pros']}}</td>
-                <td>{{item['list_of_cons']}}</td>
+                <td>{{opinion['review_id']}}</td>
+                <td>{{opinion['author_name']}}</td>
+                <td>{{opinion['recommendation']}}</td>
+                <td>{{opinion['stars_given']}}</td>
+                <td>{{opinion['verification']}}</td>
+                <td>{{opinion['helpful']}}</td>
+                <td>{{opinion['unhelpful']}}</td>
+                <td>{{opinion['review_content']}}</td>
+                <td>{{opinion['review_date']}}</td>
+                <td>{{opinion['buy_date']}}</td>
+                <td>{{opinion['list_of_pros']}}</td>
+                <td>{{opinion['list_of_cons']}}</td>
             </tr>
             {% endfor %}
         </tbody>
