@@ -4,6 +4,7 @@ import json
 import csv
 import pandas as pd
 import os
+from operator import itemgetter
 
 app = Flask(__name__, static_folder="C:\\Users\\AdamJ\\Desktop\\CeneoScraper\\charts_folder")
 
@@ -95,5 +96,83 @@ def download_xlsx(id):
 def display_charts(id):
     if request.method == 'GET':
         return render_template('charts.html', id=id)
+
+@app.route('/filter_recomendation', methods=["POST"])
+def filter_recomendations():
+    if request.method == 'POST':
+        arr = []
+        select_option = request.form.get('selector')
+        product_id = request.form.get('product_id')
+        product_data = generate_product(product_id)
+        for item in product_data[0]:
+            if item['recommendation'] == select_option:
+                arr.append(item)
+            else:
+                pass
+        return render_template('product_site.html', opinions = arr, product_cred = product_data[1])
+    
+@app.route('/filter_id', methods=["POST"])
+def filter_id():
+    if request.method == 'POST':
+        select_option = request.form.get('selector')
+        product_id = request.form.get('product_id')
+        product_data = generate_product(product_id)
+        if select_option == 'desc':
+            new_list = sorted(product_data[0], key=itemgetter('review_id'), reverse=True)
+        elif select_option == 'asc':
+            new_list = sorted(product_data[0], key=itemgetter('review_id'))
+        return render_template('product_site.html', opinions = new_list, product_cred = product_data[1])
+    
+@app.route('/filter_stars', methods=["POST"])
+def filter_stars():
+    if request.method == 'POST':
+        arr = []
+        select_option = request.form.get('selector')
+        product_id = request.form.get('product_id')
+        product_data = generate_product(product_id)
+        for item in product_data[0]:
+            if item['stars_given'] == select_option:
+                arr.append(item)
+            else:
+                pass
+        return render_template('product_site.html', opinions = arr, product_cred = product_data[1])
+    
+@app.route('/filter_verification', methods=["POST"])
+def filter_verification():
+    if request.method == 'POST':
+        arr = []
+        select_option = request.form.get('selector')
+        product_id = request.form.get('product_id')
+        product_data = generate_product(product_id)
+        for item in product_data[0]:
+            if item['verification'] == select_option:
+                arr.append(item)
+            else:
+                pass
+        return render_template('product_site.html', opinions = arr, product_cred = product_data[1])
+
+@app.route('/filter_review_date', methods=["POST"])
+def filter_review_date():
+    if request.method == 'POST':
+        select_option = request.form.get('selector')
+        product_id = request.form.get('product_id')
+        product_data = generate_product(product_id)
+        if select_option == 'desc':
+            new_list = sorted(product_data[0], key=itemgetter('review_date'), reverse=True)
+        elif select_option == 'asc':
+            new_list = sorted(product_data[0], key=itemgetter('review_date'))
+        return render_template('product_site.html', opinions = new_list, product_cred = product_data[1])
+    
+@app.route('/filter_buy_date', methods=["POST"])
+def filter_buy_date():
+    if request.method == 'POST':
+        select_option = request.form.get('selector')
+        product_id = request.form.get('product_id')
+        product_data = generate_product(product_id)
+        if select_option == 'desc':
+            new_list = sorted(product_data[0], key=itemgetter('buy_date'), reverse=True)
+        elif select_option == 'asc':
+            new_list = sorted(product_data[0], key=itemgetter('buy_date'))
+        return render_template('product_site.html', opinions = new_list, product_cred = product_data[1])
     
 app.run(host="0.0.0.0", port=80, debug=True)

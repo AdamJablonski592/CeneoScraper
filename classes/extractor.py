@@ -16,7 +16,7 @@ class Extractor():
     def get_review_recommendation(review):
         recommendation = review.find("span", class_="user-post__author-recomendation")
         if recommendation is not None:
-            return recommendation.text
+            return (recommendation.text).strip('\n')
         else:
             return ""
     
@@ -30,9 +30,9 @@ class Extractor():
     def get_review_verification(review):
         verified = review.find("div", class_="review-pz")
         if verified is not None:
-            return "1"
+            return "Opinia zweryfikowana"
         else:
-            return ""
+            return "Opinia niezweryfikowana"
         
     @staticmethod
     def get_review_helpful(review, review_id):
