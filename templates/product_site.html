@@ -27,7 +27,7 @@
 <div class="container bg-dark text-light">
     <div class="row">
       <div class="col-sm">
-        <form action="/filter_recomendation" method="POST">
+        <form action="/filter_parameter" method="POST">
             <div class="form-group">
               <label for="selector">Recommendation</label>
               <select class="form-control" name="selector" id="selector">
@@ -37,10 +37,11 @@
                 <option value="">Brak</option>
               </select>
             </div>
+            <input type="hidden" id="filter_type" name="filter_type" value="recommendation" />
             <input type="hidden" id="product_id" name="product_id" value="{{product_cred['product_id']}}" />
             <input type="submit" class="btn btn-light my-3 px-5 d-flex mx-auto" value="Submit">
         </form>
-        <form action="/filter_verification" method="POST">
+        <form action="/filter_parameter" method="POST">
             <div class="form-group">
               <label for="selector" class="p-1">Verification</label>
               <select class="form-control" name="selector" id="selector">
@@ -49,12 +50,13 @@
                 <option value="Opinia niezweryfikowana">Opinia niezweryfikowana</option>
               </select>
             </div>
+            <input type="hidden" id="filter_type" name="filter_type" value="verification" />
             <input type="hidden" id="product_id" name="product_id" value="{{product_cred['product_id']}}" />
             <input type="submit" class="btn btn-light my-3 px-5 d-flex mx-auto" value="Submit">
         </form>
       </div>
       <div class="col-sm">
-        <form action="/filter_stars" method="POST">
+        <form action="/filter_parameter" method="POST">
             <div class="form-group">
               <label for="selector">Stars given</label>
               <select class="form-control" name="selector" id="selector">
@@ -70,10 +72,11 @@
                 <option value="1/5">1/5</option>
               </select>
             </div>
+            <input type="hidden" id="filter_type" name="filter_type" value="stars_given" />
             <input type="hidden" id="product_id" name="product_id" value="{{product_cred['product_id']}}" />
             <input type="submit" class="btn btn-light my-3 px-5 d-flex mx-auto" value="Submit">
         </form>
-        <form action="/filter_id" method="POST">
+        <form action="/filter_asc_desc" method="POST">
             <div class="form-group">
               <label for="selector">Review ID</label>
               <select class="form-control" name="selector" id="selector">
@@ -82,12 +85,13 @@
                 <option value="desc">Malejąco</option>
               </select>
             </div>
+            <input type="hidden" id="filter_type" name="filter_type" value="review_id" />
             <input type="hidden" id="product_id" name="product_id" value="{{product_cred['product_id']}}" />
             <input type="submit" class="btn btn-light my-3 px-5 d-flex mx-auto" value="Submit">
         </form>
       </div>
       <div class="col-sm">
-        <form action="/filter_review_date" method="POST">
+        <form action="/filter_asc_desc" method="POST">
             <div class="form-group">
               <label for="selector">Review Date</label>
               <select class="form-control" name="selector" id="selector">
@@ -96,10 +100,11 @@
                 <option value="desc">Malejąco</option>
               </select>
             </div>
+            <input type="hidden" id="filter_type" name="filter_type" value="review_date" />
             <input type="hidden" id="product_id" name="product_id" value="{{product_cred['product_id']}}" />
             <input type="submit" class="btn btn-light my-3 px-5 d-flex mx-auto" value="Submit">
         </form>
-        <form action="/filter_buy_date" method="POST">
+        <form action="/filter_asc_desc" method="POST">
             <div class="form-group">
               <label for="selector">Buy Date</label>
               <select class="form-control" name="selector" id="selector">
@@ -108,30 +113,7 @@
                 <option value="desc">Malejąco</option>
               </select>
             </div>
-            <input type="hidden" id="product_id" name="product_id" value="{{product_cred['product_id']}}" />
-            <input type="submit" class="btn btn-light my-3 px-5 d-flex mx-auto" value="Submit">
-        </form>
-      </div>
-      <div class="col-sm">
-        <form action="/filter_recomendation" method="POST">
-            <div class="form-group">
-              <label for="selector">List of pros</label>
-              <select class="form-control" name="selector" id="selector">
-                <option value="Polecam">Polecam</option>
-                <option value="Nie polecam">Nie polecam</option>
-              </select>
-            </div>
-            <input type="hidden" id="product_id" name="product_id" value="{{product_cred['product_id']}}" />
-            <input type="submit" class="btn btn-light my-3 px-5 d-flex mx-auto" value="Submit">
-        </form>
-        <form action="/filter_recomendation" method="POST">
-            <div class="form-group">
-              <label for="selector">List of cons</label>
-              <select class="form-control" name="selector" id="selector">
-                <option value="Polecam">Polecam</option>
-                <option value="Nie polecam">Nie polecam</option>
-              </select>
-            </div>
+            <input type="hidden" id="filter_type" name="filter_type" value="buy_date" />
             <input type="hidden" id="product_id" name="product_id" value="{{product_cred['product_id']}}" />
             <input type="submit" class="btn btn-light my-3 px-5 d-flex mx-auto" value="Submit">
         </form>

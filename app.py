@@ -111,68 +111,32 @@ def filter_recomendations():
                 pass
         return render_template('product_site.html', opinions = arr, product_cred = product_data[1])
     
-@app.route('/filter_id', methods=["POST"])
-def filter_id():
-    if request.method == 'POST':
-        select_option = request.form.get('selector')
-        product_id = request.form.get('product_id')
-        product_data = generate_product(product_id)
-        if select_option == 'desc':
-            new_list = sorted(product_data[0], key=itemgetter('review_id'), reverse=True)
-        elif select_option == 'asc':
-            new_list = sorted(product_data[0], key=itemgetter('review_id'))
-        return render_template('product_site.html', opinions = new_list, product_cred = product_data[1])
-    
-@app.route('/filter_stars', methods=["POST"])
-def filter_stars():
+@app.route('/filter_parameter', methods=["POST"])
+def filter_parameter():
     if request.method == 'POST':
         arr = []
         select_option = request.form.get('selector')
+        type = request.form.get('filter_type')
         product_id = request.form.get('product_id')
         product_data = generate_product(product_id)
         for item in product_data[0]:
-            if item['stars_given'] == select_option:
-                arr.append(item)
-            else:
-                pass
-        return render_template('product_site.html', opinions = arr, product_cred = product_data[1])
-    
-@app.route('/filter_verification', methods=["POST"])
-def filter_verification():
-    if request.method == 'POST':
-        arr = []
-        select_option = request.form.get('selector')
-        product_id = request.form.get('product_id')
-        product_data = generate_product(product_id)
-        for item in product_data[0]:
-            if item['verification'] == select_option:
+            if item[f'{type}'] == select_option:
                 arr.append(item)
             else:
                 pass
         return render_template('product_site.html', opinions = arr, product_cred = product_data[1])
 
-@app.route('/filter_review_date', methods=["POST"])
-def filter_review_date():
+@app.route('/filter_asc_desc', methods=["POST"])
+def filter_asc_desc():
     if request.method == 'POST':
         select_option = request.form.get('selector')
         product_id = request.form.get('product_id')
+        type = request.form.get('filter_type')
         product_data = generate_product(product_id)
         if select_option == 'desc':
-            new_list = sorted(product_data[0], key=itemgetter('review_date'), reverse=True)
+            new_list = sorted(product_data[0], key=itemgetter(f'{type}'), reverse=True)
         elif select_option == 'asc':
-            new_list = sorted(product_data[0], key=itemgetter('review_date'))
-        return render_template('product_site.html', opinions = new_list, product_cred = product_data[1])
-    
-@app.route('/filter_buy_date', methods=["POST"])
-def filter_buy_date():
-    if request.method == 'POST':
-        select_option = request.form.get('selector')
-        product_id = request.form.get('product_id')
-        product_data = generate_product(product_id)
-        if select_option == 'desc':
-            new_list = sorted(product_data[0], key=itemgetter('buy_date'), reverse=True)
-        elif select_option == 'asc':
-            new_list = sorted(product_data[0], key=itemgetter('buy_date'))
+            new_list = sorted(product_data[0], key=itemgetter(f'{type}'))
         return render_template('product_site.html', opinions = new_list, product_cred = product_data[1])
     
 app.run(host="0.0.0.0", port=80, debug=True)
