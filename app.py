@@ -42,15 +42,17 @@ def extraction():
 @app.route('/product_site', methods = ['POST'])
 def fetch_data():
     if request.method == 'POST':
-        for key, val in request.form.items():
-            product_id = val
-        product_data = generate_product(product_id)
-        if product_id not in id_array:
-            id_array.append(product_id)
-        else:
-            pass
-        return render_template('product_site.html', opinions = product_data[0], product_cred = product_data[1])
-    
+        try:
+            for key, val in request.form.items():
+                product_id = val
+            product_data = generate_product(product_id)
+            if product_id not in id_array:
+                id_array.append(product_id)
+            else:
+                pass
+            return render_template('product_site.html', opinions = product_data[0], product_cred = product_data[1])
+        except:
+            return render_template('error.html')    
 @app.route('/product_site/<string:id>', methods=['GET'])
 def fetch_from_id(id):
     if request.method == 'GET':

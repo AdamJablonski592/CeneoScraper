@@ -10,7 +10,7 @@ class Extractor():
     @staticmethod
     def get_review_author(review):
         author_name = review.find("span", class_="user-post__author-name").text
-        return author_name
+        return author_name.strip('\n')
     
     @staticmethod
     def get_review_recommendation(review):

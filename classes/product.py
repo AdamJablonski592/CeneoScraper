@@ -2,7 +2,6 @@ import bs4, requests, re, math
 from .extractor import Extractor
 from .review import Review
 from .charts import GenerateChart
-import json
 import os
 
 class Product():
