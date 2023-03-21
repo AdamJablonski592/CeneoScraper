@@ -7,17 +7,17 @@
                     <a href="/product_site/{{product['product_id']}}" class="text-success p-2 mx-2 text-decoration-none" ><p style="font-size: 2em;">{{product['product_name']}}</p></a>
                 </div>
                 <div class="opinion_stats">
-                    <span>Average Score: <span>{{product['average_score']}}</span></span>
-                    <span>Number of Opinions: <span>{{product['review_amount']}}</span></span>
+                    <span>Średni wynik: <span>{{product['average_score']}}</span></span>
+                    <span>Liczba opinii: <span>{{product['review_amount']}}</span></span>
                 </div>
                 <div class="rating">
-                    <span>Amount of Pros: <span>{{product['num_of_pros']}}</span></span>
-                    <span>Amount of Cons: <span>{{product['num_of_cons']}}</span></span>
+                    <span>Liczba zalet: <span>{{product['num_of_pros']}}</span></span>
+                    <span>Liczba wad: <span>{{product['num_of_cons']}}</span></span>
                 </div>
                 <div class="buttons">
-                    <a class="btn btn-light" href="/download_json/{{product['product_id']}}" role="button">Download JSON</a>
-                    <a class="btn btn-light" href="/download_csv/{{product['product_id']}}" role="button">Download CSV</a>
-                    <a class="btn btn-light" href="/download_xlsx/{{product['product_id']}}" role="button">Download XLSX</a>
+                    <a class="btn btn-light" href="/download_json/{{product['product_id']}}" role="button">Pobierz plik JSON</a>
+                    <a class="btn btn-light" href="/download_csv/{{product['product_id']}}" role="button">Pobierz plik CSV</a>
+                    <a class="btn btn-light" href="/download_xlsx/{{product['product_id']}}" role="button">Pobierz plik XLSX</a>
                 </div>
             </div>
         {% endfor %}
